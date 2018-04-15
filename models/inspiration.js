@@ -18,6 +18,14 @@
         type: Sequelize.UUID,
         allowNull: false,
       },  
+      title: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      attribution: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
     });
     Inspiration.associate = models => {
       Inspiration.belongsTo(models.User);
