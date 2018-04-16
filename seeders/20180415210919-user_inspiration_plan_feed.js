@@ -32,6 +32,7 @@ module.exports = {
   up:  (queryInterface, Sequelize) => {
     return [
        queryInterface.bulkInsert('users', [{     
+        id: 1000000, 
         username : 'Travel Hive',
         email : 'travel.hive@gmail.com',
         password: '$2a$08$RBGCepToCHMYokvBGvC0I.Zrs948SJgWPUADex.sRYiEIaABNZRbq',
@@ -39,6 +40,14 @@ module.exports = {
         profileImg: "data:image/jpeg;base64,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",
         createdAt : new Date(),
         updatedAt : new Date(),
+      }]),
+
+      queryInterface.bulkInsert('inspirations', [{
+        userid: 1000000,
+        image: "https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzL2RlODZjMTUyZWY2YWRlZmYxNDljNWIxNzU2NjNmYThhNzI4NTVhNzMuanBnIl0sWyJwIiwidGh1bWIiLCI5ODB4PiJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA4MSAtYXV0by1vcmllbnQiXV0/de86c152ef6adeff149c5b175663fa8a72855a73.jpg",
+        title: "Kasbah du Toubkal",
+        description: "My inspiration sipping coffee here at the base of the High Atlas Mountain in Morrocco, breathing in the fresh air.",
+        attribution: "https://www.atlasobscura.com/places/kasbah-du-toubkal"
       }]),
      
 
@@ -49,8 +58,11 @@ module.exports = {
   down:  (queryInterface, Sequelize) => {
     return [
        queryInterface.bulkDelete('users', [{            
-              username : 'Travel Hive',
-            }])          
+        id : 1000000,
+       }]),
+       queryInterface.bulkDelete('inspirations', [{
+        userid: 1000000 
+       }]),          
     ]}
 };
 
