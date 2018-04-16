@@ -11,7 +11,7 @@ import { ProfilePage } from "./components/Pages/Profile/Profile";
 import { InspirationPage } from "./components/Pages/Inspiration";
 import Plan from "./components/Pages/Plan/Plan";
 import { Experience } from "./components/Pages/Experience/Experience";
-import { Connect } from "./components/Pages/Connect";
+import Connect from "./components/Pages/Connect/Connect";
 import { Explore } from "./components/Pages/Explore/Explore";
 
 import user from "./models/user";
@@ -43,7 +43,7 @@ const DefaultLayout = ({ children }) => (
 export const App = connect(({ user, inspiration }) => ({
   user,
   inspiration
-}))(function(props) {  
+}))(function(props) {
   return (
     <Router>
       <DefaultLayout>
