@@ -23,7 +23,10 @@ export class PinInput extends Component {
         this.setState({ loading: false });
       });
     }  
-    handleUrlChange(event) {      
+    handleUrlChange(event) {   
+       /* Pass url up to BookmarkInspiration component to use as attribution*/ 
+      this.props.handleUrlAttribution(event.target.value);  
+      /* Set the url so we can retrieve the images */
       this.setState({
         url: event.target.value,       
       });     
@@ -49,7 +52,7 @@ export class PinInput extends Component {
     }
   }
 
-  export const PinCard = ({ selectedImageAttrs, handleChange, title }) => (
+  export const PinCard = ({ selectedImageAttrs, handleTitleChange,handleDescriptionChange, title, description }) => (
     <div className="pin-preview">
       <Card
         style={{ maxWidth: "60%" }}
@@ -58,8 +61,15 @@ export class PinInput extends Component {
         <Input
           type="text"
           value={title}         
-          onChange={handleChange}
+          onChange={handleTitleChange}
           placeholder="Add Title..."
+        />
+
+        <Input
+          type="text"
+          value={description}         
+          onChange={handleDescriptionChange}
+          placeholder="Add Description..."
         />
       </Card>
     </div>

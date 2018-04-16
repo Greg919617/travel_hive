@@ -43,11 +43,15 @@ module.exports = {
       }]),
 
       queryInterface.bulkInsert('inspirations', [{
+        id: "d870dec2-f923-4869-89ef-c8b997016e23",
         userid: 1000000,
         image: "https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzL2RlODZjMTUyZWY2YWRlZmYxNDljNWIxNzU2NjNmYThhNzI4NTVhNzMuanBnIl0sWyJwIiwidGh1bWIiLCI5ODB4PiJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA4MSAtYXV0by1vcmllbnQiXV0/de86c152ef6adeff149c5b175663fa8a72855a73.jpg",
         title: "Kasbah du Toubkal",
-        description: "My inspiration sipping coffee here at the base of the High Atlas Mountain in Morrocco, breathing in the fresh air.",
-        attribution: "https://www.atlasobscura.com/places/kasbah-du-toubkal"
+        description: "My inspiration is sipping coffee here at the base of the High Atlas Mountain in Morrocco, breathing in the fresh air.",
+        attribution: "https://www.atlasobscura.com/places/kasbah-du-toubkal",
+        createdAt : new Date(),
+        updatedAt : new Date(),
+
       }]),
      
 
