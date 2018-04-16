@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
-  export let PlanModel = function(sequelizeDB){
-    const Plan = sequelizeDB.define('plan', {
+  export let ItineraryModel = function(sequelizeDB){
+    const Itinerary = sequelizeDB.define('itinerary', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -11,7 +11,7 @@ import Sequelize from 'sequelize';
       userId: {
         type: Sequelize.UUID,
         allowNull: false,
-      }, 
+      },  
       title: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -21,13 +21,9 @@ import Sequelize from 'sequelize';
         allowNull: false,
       },
     });
-    Plan.associate = models => {
-      Plan.belongsToMany(User, {
-          through: UserPlan
-      });
-    } 
+    Itinerary.associate = models => {
+      Itinerary.belongsTo(models.Plan);
+    }
 
-  return Plan;
+  return Itinerary;
   }
-
- 
