@@ -12,6 +12,7 @@ import {UserLoginRouter} from './routes/userLoginRouter';
 import {ApiVersionRouter} from './routes/apiVersionRouter';
 import {ProfileRouter} from './routes/profileRouter';
 import {InspirationRouter} from './routes/inspirationRouter';
+import {PlanRouter} from './routes/planRouter';
 
 export const app = express();
 export const httpServer = require('http').createServer(app);
@@ -94,6 +95,7 @@ const env = process.env.node_env;
     app.use('/',UserLoginRouter(router,passport));
     app.use('/',ProfileRouter(router, passport,userAuthenticated));
     app.use('/',InspirationRouter(router, passport, inspirationModel, userAuthenticated));
+    app.use('/',PlanRouter(router, passport, planModel, userAuthenticated));
     /*****************************************/
         
     // Register all routes with api prefix

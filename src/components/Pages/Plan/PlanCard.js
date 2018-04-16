@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Itinerary from "./Itinerary"
-import Plan from "./Plan"
+import Plan from "./index"
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Card, Col, Button } from 'antd';
