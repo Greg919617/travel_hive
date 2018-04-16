@@ -149,10 +149,17 @@ export function getBase64ImgFromUrl(url) {
 }
 
 export function addInspiration(inspiration) {
+  console.log("Add Inspiration userapi", inspiration);
   return fetch(`${api}/inspiration`, {
     ...baseOptions,
     method: 'POST',
-    body: JSON.stringify({ image: inspiration.image, description: inspiration.description }),
+    body: JSON.stringify({ 
+      image: inspiration.image, 
+      description: inspiration.description,
+      title: inspiration.title,
+      attribution: inspiration.attribution,
+      location: inspiration.location,
+     }),
   })
     .then(response => {
       if (response.ok) {

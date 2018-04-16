@@ -28,16 +28,24 @@ export class PinInput extends Component {
   }
 
   export const PinCard = (props) => (    
-    <div className="pin-preview">
-    {console.log("PinCard props",props)}
+    <div className="pin-preview">    
       <Card
         style={{ maxWidth: "80%" }}       
        cover={<img src={props.imageSrc} alt="" />}
       >
         <Input
+          placeholder="Add title..."
+          style={{marginBottom:"20px"}}        
           type="text"
           value={props.title}
-          onChange={props.handleChange}          
+          onChange={props.handleTitleChange}          
+        />
+
+        <Input
+          placeholder="Add description..."
+          type="text"
+          value={props.description}
+          onChange={props.handleDescriptionChange}
         />
       </Card>
     </div>

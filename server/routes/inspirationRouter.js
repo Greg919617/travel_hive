@@ -3,7 +3,13 @@
 export const InspirationRouter = function(router,passport,inspirationModel,userAuthenticated){
     router.post('/inspiration', userAuthenticated,
         (req, res) => {     
-        inspirationModel.create({userId: req.user.id, image: req.body.image, description: req.body.description})      
+        inspirationModel.create({userId: req.user.id,
+                                 image: req.body.image,
+                                 title: req.body.title,
+                                 description: req.body.description,
+                                 attribution: req.body.attribution,
+                                 location: req.body.location
+                                })                                     
         .then((inspiration) => {          
             res.status(200).send({message: 'Inspiration successfully saved!'})        
         }).catch(error => {
@@ -17,7 +23,7 @@ export const InspirationRouter = function(router,passport,inspirationModel,userA
         (req, res) => {
             inspirationModel
             .findAndCountAll({
-                attributes: ['id','image','description'],
+                attributes: ['id','image','title','description','attribution'],
                 where: {
                 userId: req.user.id
                 }

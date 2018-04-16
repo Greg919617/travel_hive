@@ -11,6 +11,10 @@ module.exports = {
         type: Sequelize.STRING(),
         allowNull: false,        
       }),     
+      await queryInterface.addColumn('inspirations', 'location', {        
+        type: Sequelize.STRING(),
+                
+      }),     
       
     ]
     
@@ -18,7 +22,8 @@ module.exports = {
   down: async (queryInterface, Sequelize) => {
     return [
       await queryInterface.removeColumn('inspirations', 'title'),     
-      await queryInterface.removeColumn('inspirations', 'attribution'),     
+      await queryInterface.removeColumn('inspirations', 'attribution'), 
+      await queryInterface.removeColumn('inspirations', 'location'),     
     ]  
   }    
 };

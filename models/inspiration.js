@@ -14,6 +14,9 @@
       description: {
         type: Sequelize.STRING,
       },
+      location: {
+        type: Sequelize.STRING,
+      },
       userId: {
         type: Sequelize.UUID,
         allowNull: false,

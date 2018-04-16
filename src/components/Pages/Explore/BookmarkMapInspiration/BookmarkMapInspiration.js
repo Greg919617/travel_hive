@@ -9,7 +9,10 @@ export class BookmarkMapInspiration extends React.Component {
       loading: false,
       visible: this.props.visible,    
       imageSrc: this.props.imageSrc,
-      title: this.props.imageDescription
+      //title: this.props.imageDescription
+      title: "",
+      description: this.props.imageDescription,
+      
     };
     componentWillUnmount = () =>{
       this.props.onToggleModal();
@@ -21,8 +24,11 @@ export class BookmarkMapInspiration extends React.Component {
     };
     handleOk = () => {      
         addInspiration({
-          image: this.state.imageSrc,
-          description: this.state.title
+          image: this.state.imageSrc,          
+          title: this.state.title,
+          description: this.state.description,
+          attribution: this.props.imageAttribution,
+          location: this.props.imageLocation
         }).then(response => {
           if (response) {
             message.success("Inspiration added!");
@@ -44,6 +50,7 @@ export class BookmarkMapInspiration extends React.Component {
       this.setState({ visible: false });
     };
     handleTitleChange = e => this.setState({ title: e.target.value });
+    handleDescriptionChange = e => this.setState({ description: e.target.value });
     selectImage = (src, e) => {
       getBase64ImgFromUrl(src).then(result => {
         this.setState({ selectedImageAttrs: { src: result } });
@@ -80,8 +87,10 @@ export class BookmarkMapInspiration extends React.Component {
             <PinInput updateImages={this.updateImages} />  
          
             <PinCard             
-              handleChange={this.handleTitleChange}
+              handleTitleChange={this.handleTitleChange}
+              handleDescriptionChange={this.handleDescriptionChange}
               title={this.state.title}
+              description={this.state.description}
               imageSrc = {this.props.imageSrc}
             />
            

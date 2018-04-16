@@ -16,8 +16,7 @@ class PinInput extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }  
 
-  handleChange(event) {
-    // console.log(event.target.value);
+  handleChange(event) {    
     this.setState({ url: event.target.value });
   }
 
@@ -42,7 +41,7 @@ class PinInput extends Component {
   }
 }
 
-const PinCard = ({image, description}) => (
+const PinCard = ({image, title, description, attribution}) => (
   <div>
     <Card
       hoverable
@@ -50,12 +49,10 @@ const PinCard = ({image, description}) => (
       cover={<img src={image || "https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzL2RlODZjMTUyZWY2YWRlZmYxNDljNWIxNzU2NjNmYThhNzI4NTVhNzMuanBnIl0sWyJwIiwidGh1bWIiLCI5ODB4PiJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA4MSAtYXV0by1vcmllbnQiXV0/de86c152ef6adeff149c5b175663fa8a72855a73.jpg"} alt="" />}
     >
       <Meta
-        title={description || "Kasbah du Toubkal"} 
-
-        /* IMPORTANT! need to add href attribution of images before site is live to public */
-        description={<a href="" rel="noopener noreferrer" target="_blank">Source</a>}
-        /******************************************************************************** */
+        title={title || "No Title Found"}
+        description={description || "No description found"}         
       />
+      <a href={attribution} rel="noopener noreferrer" target="_blank">Source</a>
     </Card>
   </div>
 );
@@ -87,7 +84,10 @@ export class InspirationPage extends Component {
               <PinCard 
                 key={inspiration.id} 
                 image = {inspiration.image }
+                title = {inspiration.title}
                 description = {inspiration.description}
+                attribution = {inspiration.attribution}
+
               />
              </Col>          
           );         

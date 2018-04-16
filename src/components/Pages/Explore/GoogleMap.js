@@ -24,7 +24,9 @@ export const CustomMap = compose(
     center: { lat: 25.03, lng: 121.6 }, /* This is the home coordinates where the map will start once mounted */       
     streetViewObject : {}, /* This object contains all meta data about the streetview place*/
     image:"", /* Street view picture */
+    imageAttribution:"", /* Url of contributor or default google maps url */
     imageDescription:"", /* Description of street view picture */
+    imageLocation:"" /* latitude and longitude string */
   }),
   withStateHandlers(() => ({
     isOpen: false,
@@ -88,10 +90,9 @@ export const CustomMap = compose(
          
         },
         onVisibleChanged: (e) => console.log("Map visibility changed",e),
-        onStreetViewTakePicture: () => {
-          console.log("onStreetViewTakePicture called",this.state.streetViewObject);
+        onStreetViewTakePicture: () => {          
           const streetView = this.state.streetViewObject;
-          
+          console.log("Attribution", streetView.location.profileUrl ,streetView.location.profileUrl ? streetView.location.profileUrl : "https://maps.google.com");
           let args = {
             width: 400, /* This is a fixed value for now, but could be a user input */
             height: 400, /* This is a fixed value for now, but could be a user input */
@@ -104,7 +105,11 @@ export const CustomMap = compose(
 
           const googleStreetviewImage = `https://maps.googleapis.com/maps/api/streetview?size=${args.width}x${args.height}&location=${args.lat}, ${args.lng}&fov=${args.fov}&heading=${args.heading}&pitch=${args.pitch}&key=${process.env.REACT_APP_GOOGLE_MAP_API}`        
           
-          this.setState({image: googleStreetviewImage, imageDescription: streetView.location.description});
+          this.setState({image: googleStreetviewImage, 
+                         imageAttribution: streetView.location.profileUrl ? streetView.location.profileUrl : "https://maps.google.com",
+                         imageDescription: streetView.location.description,
+                         imageLocation: streetView.position.lat() + "," + streetView.position.lng()
+          });
                     
         },
       })
@@ -165,7 +170,9 @@ export const CustomMap = compose(
                             onToggleModal = {props.onToggleModal}
                             visible = {true} 
                             imageSrc = {props.image}
+                            imageAttribution = {props.imageAttribution}
                             imageDescription = {props.imageDescription}   
+                            imageLocation = {props.imageLocation}
                           /> 
     }
   </div>

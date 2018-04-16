@@ -43,7 +43,7 @@
     "db:migrate": "./node_modules/.bin/sequelize db:migrate",
     "db:migrate:undo":"./node_modules/.bin/sequelize db:migrate:undo",
     "db:seed": "./node_modules/.bin/sequelize db:seed:all",
-    "db:seed:undo":"./node_modules/.bin/sequelize db:seed:undo",
+    "db:seed:undo":"./node_modules/.bin/sequelize db:seed:undo:all",
     "db:destroy": "docker rm travel_hive_mysql",
     "db:start": "docker start travel_hive_mysql",
     "db:stop": "docker stop travel_hive_mysql"

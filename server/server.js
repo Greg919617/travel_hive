@@ -2,6 +2,8 @@ import express from 'express';
 import {connectToMysqlDB} from './connectToMysqlDB';
 import {UserModel} from '../models/userModel';
 import {InspirationModel} from '../models/inspiration';
+import {ItineraryModel} from '../models/itinerary';
+import {PlanModel} from '../models/plan';
 import {passportStrat} from '../config/passportStrategy';
 import logger from './utils/logger';
 
@@ -28,6 +30,8 @@ const env = process.env.node_env;
   if(mysqlDB){
     let userModel = await UserModel(mysqlDB.sequalizeDB);  
     let inspirationModel = await InspirationModel(mysqlDB.sequalizeDB);
+    let planModel = await PlanModel(mysqlDB.sequalizeDB);
+    let itineraryModel = await ItineraryModel(mysqlDB.sequalizeDB); 
     let passport = await passportStrat(userModel);
 
     app.use(bodyParser.json());
