@@ -12,6 +12,9 @@ module.exports = {
         type: Sequelize.UUID,
         allowNull: false,
       },   
+      inspirationId: {
+        type: Sequelize.UUID,
+      },
       title: {
         type: Sequelize.STRING
       },

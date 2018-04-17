@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Button, Row, Col, message, Modal, Form, Input } from 'antd';
-import { addPlan, getPlans } from '../../../ApiContracts/planApi'
+import { addPlan, getPlans} from '../../../ApiContracts/planApi'
 import PlanCard from "./PlanCard";
 
 const { TextArea } = Input;
@@ -18,7 +18,7 @@ export class Plan extends React.Component {
       data: []
     }
     this.addTrip = this.addTrip.bind(this);
-    this.removeTrip = this.removeTrip.bind(this);
+    this.removeTrip = this.removeTrip.bind(this);    
   }
   componentWillMount(){
     getPlans().then((plansObject) => {
@@ -50,7 +50,7 @@ export class Plan extends React.Component {
       modalVisible: false
     });
   }
-
+  
   addTrip = (e) => {
     e.preventDefault();
 
@@ -78,6 +78,8 @@ export class Plan extends React.Component {
         message.error("Plan was not saved!");
       }
     });
+    
+
   }
 
   render() {
@@ -113,7 +115,8 @@ export class Plan extends React.Component {
                 remove = {this.removeTrip.bind(this, i)}
                 title = {x.title}
                 description = {x.description}
-                picture = {x.picture} />
+                picture = {x.picture}               
+              />
             </div>
           )}
         </div>

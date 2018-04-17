@@ -62,6 +62,7 @@ class Itinerary extends React.Component {
   }
 
   render() {
+    console.log("Itinerary page props",this.props);
     return (
       <div>
         <h1> {this.props.title} </h1>
@@ -105,7 +106,9 @@ class Itinerary extends React.Component {
                 remove = {this.removeItinerary.bind(this, i)}
                 title = {x.title}
                 description = {x.description}
-                picture = {x.picture} />
+                picture = {x.picture}
+                onItineraryAdded = {this.props.location.onItineraryAdded}
+              />
             </div>
           )}
         </div>

@@ -32,5 +32,29 @@ export const PlanRouter = function(router,passport,planModel,userAuthenticated){
             });      
         }
     );
+
+    router.put('/plan', userAuthenticated,
+    (req, res) => {
+        planModel
+        .update(
+            {            
+              inspirationId: req.body.inspirationId
+            },
+            {
+            where: 
+              {
+                id: req.body.id
+              }
+        }).then(result => {
+            res.status(200).json({plans: result.rows});
+        }).catch(error => {
+            res.status(400).send({message:'Bad Request. Plan not updated!'})
+        });      
+    }
+);
+
+
+    
+
     return router;
 }    

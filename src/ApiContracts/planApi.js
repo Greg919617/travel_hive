@@ -55,3 +55,25 @@ export function addPlan(plan) {
         console.log(error);
       });
   }  
+
+  export function updatePlanInspirationImage(planId, inspirationId) {
+    
+    return fetch(`${api}/plan`, {
+      ...baseOptions,
+      method: 'PUT',
+      body: JSON.stringify({ 
+        id: planId, 
+        inspirationId: inspirationId,   
+        
+       }),
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then(data => data ? data.message : null)
+      .catch(error => {
+        console.log(error);
+      });
+  }

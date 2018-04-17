@@ -18,7 +18,12 @@ const AddBookMarkSearchView = props => (
     </div>
     <div>
     { props.inspirations.map((inspiration) => {
-     return <img style={{width:"45%", margin:"5px"}} key={inspiration.id} src={inspiration.image}/>
+     return <img onDragStart={props.dragStart}
+                 style={{width:"45%", margin:"5px"}}
+                 key={inspiration.id} 
+                 src={inspiration.image}
+                 data-id={inspiration.id}
+            />
     })}
       
     </div>
@@ -48,11 +53,16 @@ export class AddBookMarkSearch extends React.Component {
         data: this.state.data.filter((x,i) => i != index)
       });
     }
+    dragStart = e =>{
+      console.log("Drag start",e.target.getAttribute('data-id'));
+      e.dataTransfer.setData('text', JSON.stringify(e.target.getAttribute('data-id')));
+    }
   
     render() {
       return (
         <div>          
           {this.props.bookmarkSearchVisible ? <AddBookMarkSearchView 
+                                                dragStart = {this.dragStart}
                                                 onChange = {this.onChange}
                                                 inspirations = {this.state.inspirations}
                                               /> : null}

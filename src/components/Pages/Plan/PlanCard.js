@@ -4,7 +4,8 @@ import Itinerary from "./Itinerary"
 import Plan from "./index"
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { Card, Col, Button } from 'antd';
+import { Card, Col, Button, message } from 'antd';
+import { updatePlanInspirationImage } from '../../../ApiContracts/planApi'
 
 const { Meta } = Card;
 
@@ -25,6 +26,18 @@ class PlanCard extends React.Component {
     this.props.remove(this.props.data);
   }
 
+  onItineraryAdded = (inspirationId) =>{
+    console.log("Inspiration added to Plan", inspirationId);
+    updatePlanInspirationImage(this.props.data.id,inspirationId)
+    .then(response => {
+      if (response) {
+        message.success("Inspiration added!");
+      } else {
+        message.error("Inspiration was not saved!");
+      }
+    });
+  }
+
   render() {
     return (
       <div>
@@ -38,7 +51,7 @@ class PlanCard extends React.Component {
           <Meta
             description = {this.props.description} />
             <Button>
-              <Link to = {`/plan/${this.props.number}`}> Edit Trip </Link>
+              <Link to = {{pathname: `/plan/${this.props.number}`, onItineraryAdded: this.onItineraryAdded}}> Edit Trip </Link>
             </Button>
             <br/>
             <Button

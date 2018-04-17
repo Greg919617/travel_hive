@@ -12,6 +12,9 @@ import Sequelize from 'sequelize';
         type: Sequelize.UUID,
         allowNull: false,
       }, 
+      inspirationId:{
+        type: Sequelize.UUID,  
+      },
       title: {
         type: Sequelize.STRING,
         allowNull: false,

@@ -31,6 +31,21 @@ class ItineraryCard extends React.Component {
     console.log("Bookmark Clicked");
     this.setState({bookmarkSearchVisible: !this.state.bookmarkSearchVisible});
   }
+  handleOnDrop = e =>{
+    e.preventDefault();
+    console.log("Drop event",e.target.value);
+    
+    let data;
+
+    try {
+      data = JSON.parse(e.dataTransfer.getData('text'));
+    } catch (e) {      
+      return;
+    }
+    console.log("Data transfered is: ",data);
+    this.props.onItineraryAdded(data);
+
+  }
 
   render() {
     return (
@@ -42,8 +57,9 @@ class ItineraryCard extends React.Component {
             title = {this.props.title}            
             cover = {<img src= {this.props.picture}  />} >
           <Input
+            onDrop = {this.handleOnDrop}
             addonAfter={<Icon  type="book" onClick={this.handleBookmarkClick}/>} 
-            defaultValue="mysite"             
+            defaultValue="Drag a bookmark here!"             
           />  
           <Meta
             description = {this.props.description} 
