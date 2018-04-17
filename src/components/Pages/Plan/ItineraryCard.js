@@ -27,13 +27,11 @@ class ItineraryCard extends React.Component {
     });
     this.props.remove(this.props.data);
   }
-  handleBookmarkClick = () => {
-    console.log("Bookmark Clicked");
+  handleBookmarkClick = () => {   
     this.setState({bookmarkSearchVisible: !this.state.bookmarkSearchVisible});
   }
   handleOnDrop = e =>{
-    e.preventDefault();
-    console.log("Drop event",e.target.value);
+    e.preventDefault();    
     
     let data;
 
@@ -42,7 +40,7 @@ class ItineraryCard extends React.Component {
     } catch (e) {      
       return;
     }
-    console.log("Data transfered is: ",data);
+    
     this.props.onItineraryAdded(data);
 
   }

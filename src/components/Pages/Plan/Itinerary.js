@@ -61,13 +61,11 @@ class Itinerary extends React.Component {
     
   }
 
-  render() {
-    console.log("Itinerary page props",this.props);
+  render() {    
     return (
       <div>
         <h1> {this.props.title} </h1>
-        <p> {this.props.description} </p>
-        {/*<p> Add Day by Day Activies </p> */}
+        <p> {this.props.description} </p>        
         <Button onClick={this.showModal}>
           Add Day by Day Activities
         </Button>  
@@ -75,9 +73,7 @@ class Itinerary extends React.Component {
           <Link to = {`/plan/`}> Go Back to Previous Trips </Link>
         </Button>
 
-         <Row gutter={24}>
-       {/*} <p> PLANNING PAGE </p>
-        <Button onClick={this.showModal}> Create a new plan </Button> */}
+         <Row gutter={24}>      
         <Modal
           title="Create a new Itinerary"
           visible={this.state.modalVisible}
@@ -86,10 +82,7 @@ class Itinerary extends React.Component {
           <Form>
             <Input
               placeholder="Add a title" value={this.state.title}
-              onChange={this.handleProp('title').bind(this)} />
-            {/*<Input
-              placeholder="Add picture URL" value={this.state.picture}
-            onChange={this.handleProp('picture').bind(this)} /> */}
+              onChange={this.handleProp('title').bind(this)} />          
             <TextArea
               placeholder = "Write a brief description about your itinerary"
               value={this.state.description}

@@ -5,9 +5,8 @@ import { Plan } from './Plan'
 import Itinerary from './Itinerary'
 
 export const PlanHome = () => (
-  <plan>
-    <Switch>
-      {/* <Route exact path='/plan' component={Trips}/> */}
+  /*<plan>*/
+    <Switch>      
       <Route exact path='/plan' component={Plan}/>
       <Route path='/plan/:number' render={(props) => (
         <Itinerary {...props}
@@ -15,7 +14,7 @@ export const PlanHome = () => (
           description = "Description" />
       )}/>
     </Switch>
-  </plan>
+  /*</plan>*/
 )
 
 

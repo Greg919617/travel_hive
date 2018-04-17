@@ -53,8 +53,7 @@ export class AddBookMarkSearch extends React.Component {
         data: this.state.data.filter((x,i) => i != index)
       });
     }
-    dragStart = e =>{
-      console.log("Drag start",e.target.getAttribute('data-id'));
+    dragStart = e =>{      
       e.dataTransfer.setData('text', JSON.stringify(e.target.getAttribute('data-id')));
     }
   

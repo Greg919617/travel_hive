@@ -12,8 +12,7 @@ export class Plan extends React.Component {
 
     this.state = {
       title: '',
-      description: '',
-      picture: '',
+      description: '',    
       modalVisible: false,
       data: []
     }
@@ -49,8 +48,7 @@ export class Plan extends React.Component {
     this.setState({
       modalVisible: false
     });
-  }
-  
+  } 
   addTrip = (e) => {
     e.preventDefault();
 
@@ -95,10 +93,7 @@ export class Plan extends React.Component {
           <Form>
             <Input
               placeholder="Add a title" value={this.state.title}
-              onChange={this.handleProp('title').bind(this)} />
-            {/*<Input
-              placeholder="Add picture URL" value={this.state.picture}
-            onChange={this.handleProp('picture').bind(this)} /> */}
+              onChange={this.handleProp('title').bind(this)} />            
             <TextArea
               placeholder = "Write a brief description about your trip"
               value={this.state.description}
@@ -115,7 +110,8 @@ export class Plan extends React.Component {
                 remove = {this.removeTrip.bind(this, i)}
                 title = {x.title}
                 description = {x.description}
-                picture = {x.picture}               
+                picture = {x.picture}      
+                onPictureUpdate = {this.onPictureUpdate}         
               />
             </div>
           )}

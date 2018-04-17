@@ -21,7 +21,7 @@ export const PlanRouter = function(router,passport,planModel,userAuthenticated){
         (req, res) => {
             planModel
             .findAndCountAll({
-                attributes: ['id','title','description'],
+                attributes: ['id','inspirationId','title','description'],
                 where: {
                 userId: req.user.id
                 }
