@@ -4,7 +4,8 @@ import Itinerary from "./Itinerary"
 import Plan from "./index"
 
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { Card, Col, Button } from 'antd';
+import { Card, Col, Button, Icon, Input } from 'antd';
+import { AddBookMarkSearch } from './AddBookMarkSearch';
 
 const { Meta } = Card;
 
@@ -13,9 +14,11 @@ class ItineraryCard extends React.Component {
     super(props);
 
     this.state = {
-      visible: true
+      visible: false,
+      bookmarkSearchVisible: false
     };
     this.delete = this.delete.bind(this);
+    
   }
 
   delete = () => {
@@ -23,6 +26,10 @@ class ItineraryCard extends React.Component {
       visible: false
     });
     this.props.remove(this.props.data);
+  }
+  handleBookmarkClick = () => {
+    console.log("Bookmark Clicked");
+    this.setState({bookmarkSearchVisible: !this.state.bookmarkSearchVisible});
   }
 
   render() {
@@ -32,21 +39,29 @@ class ItineraryCard extends React.Component {
           <Card
             hoverable
             style = {{ margin: '5px' }}
-            title = {this.props.title}
-            visible = {this.state.visible}
-            cover = {<img src= {this.props.picture} height = '200px' />} >
+            title = {this.props.title}            
+            cover = {<img src= {this.props.picture}  />} >
+          <Input
+            addonAfter={<Icon  type="book" onClick={this.handleBookmarkClick}/>} 
+            defaultValue="mysite"             
+          />  
           <Meta
-            description = {this.props.description} />
-            <Button>
+            description = {this.props.description} 
+          />          
+          <Button>
               <Link to = {`/plan/${this.props.number}`}> Edit Itinerary </Link>
-            </Button>
-            <br/>
-            <Button
+          </Button>
+          <br/>
+          <Button
               onClick = {this.delete}
               type="danger"> Delete Itinerary
-            </Button>
+          </Button>
           </Card>
+          
         </Col>
+        <Col span={8}>
+         <AddBookMarkSearch bookmarkSearchVisible = {this.state.bookmarkSearchVisible}/>
+        </Col> 
       </div>
     )
   }
