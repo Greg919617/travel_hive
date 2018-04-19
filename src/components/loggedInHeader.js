@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Icon, Avatar, Dropdown } from "antd";
-import {menu } from "./menu";
+import { menu } from "./menu";
 
 const { Header } = Layout;
 
@@ -12,13 +12,12 @@ export const LoggedInHeader = props => (
       </a>
     </div>
     <div className="avatar-container">
-      <Avatar shape="square" size="large" src={props.profileImage} />
+      <a href ="./profile">
+        <Avatar shape="square" size="large" src={props.profileImage} />
+      </a>
       <Dropdown overlay={menu}>
         <Icon type="down" />
       </Dropdown>
     </div>
   </Header>
 );
-
-
-// <img src={logo} alt="logo" className="logo" />
