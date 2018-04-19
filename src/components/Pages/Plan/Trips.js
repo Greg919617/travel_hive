@@ -66,7 +66,6 @@ class Trips extends React.Component {
   render() {
     return (
       <Row gutter={24}>
-        <p> PLANNING PAGE </p>
         <Button onClick={this.showModal}> Create a new itinerary </Button>
         <Modal
           title="Create a new itinerary"

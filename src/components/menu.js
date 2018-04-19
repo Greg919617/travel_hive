@@ -4,8 +4,6 @@ import { saveState } from "../models/localStorage";
 import { app } from "./app";
 import { Menu } from "antd";
 
-
-
 const onLogOut = ({ key }) => {
   if (key === "1") {
     logoutUser();
