@@ -26,7 +26,9 @@ export class BookmarkInspiration extends React.Component {
       imageChosen: false,
       selectedImageAttrs: null,
       imageAttrs: [],
-      title: ""
+      title: "",
+      description:"",      
+      url:"",
     };
     showModal = () => {
       this.setState({
@@ -43,7 +45,9 @@ export class BookmarkInspiration extends React.Component {
       }),
         addInspiration({           
           image: this.state.selectedImageAttrs.src,
-          description: this.state.title
+          title: this.state.title,
+          description: this.state.description,
+          attribution: this.state.url
         }).then(response => {
           if (response) {
             message.success("Inspiration added!");
@@ -64,7 +68,11 @@ export class BookmarkInspiration extends React.Component {
     handleCancel = () => {
       this.setState({ visible: false });
     };
+    handleUrlAttribution = (url) =>{
+     this.setState({url: url});
+    };
     handleTitleChange = e => this.setState({ title: e.target.value });
+    handleDescriptionChange = e => this.setState({ description: e.target.value });
     selectImage = (src, e) => {
       getBase64ImgFromUrl(src).then(result => {
         this.setState({ selectedImageAttrs: { src: result } });
@@ -101,13 +109,18 @@ export class BookmarkInspiration extends React.Component {
               </Button>
             ]}
           >
-            <PinInput updateImages={this.updateImages} />
+            <PinInput 
+              updateImages={this.updateImages}
+              handleUrlAttribution={this.handleUrlAttribution}
+             />
   
             {this.state.imageChosen ? (
               <PinCard
                 selectedImageAttrs={this.state.selectedImageAttrs}
-                handleChange={this.handleTitleChange}
+                handleTitleChange={this.handleTitleChange}
+                handleDescriptionChange={this.handleDescriptionChange}               
                 title={this.state.title}
+                description={this.state.description}
               />
             ) : (
               <ImageSelector

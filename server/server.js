@@ -2,6 +2,8 @@ import express from 'express';
 import {connectToMysqlDB} from './connectToMysqlDB';
 import {UserModel} from '../models/userModel';
 import {InspirationModel} from '../models/inspiration';
+import {ItineraryModel} from '../models/itinerary';
+import {PlanModel} from '../models/plan';
 import {passportStrat} from '../config/passportStrategy';
 import logger from './utils/logger';
 
@@ -10,6 +12,7 @@ import {UserLoginRouter} from './routes/userLoginRouter';
 import {ApiVersionRouter} from './routes/apiVersionRouter';
 import {ProfileRouter} from './routes/profileRouter';
 import {InspirationRouter} from './routes/inspirationRouter';
+import {PlanRouter} from './routes/planRouter';
 
 export const app = express();
 export const httpServer = require('http').createServer(app);
@@ -28,6 +31,8 @@ const env = process.env.node_env;
   if(mysqlDB){
     let userModel = await UserModel(mysqlDB.sequalizeDB);  
     let inspirationModel = await InspirationModel(mysqlDB.sequalizeDB);
+    let planModel = await PlanModel(mysqlDB.sequalizeDB);
+    let itineraryModel = await ItineraryModel(mysqlDB.sequalizeDB); 
     let passport = await passportStrat(userModel);
 
     app.use(bodyParser.json());
@@ -90,6 +95,7 @@ const env = process.env.node_env;
     app.use('/',UserLoginRouter(router,passport));
     app.use('/',ProfileRouter(router, passport,userAuthenticated));
     app.use('/',InspirationRouter(router, passport, inspirationModel, userAuthenticated));
+    app.use('/',PlanRouter(router, passport, planModel, userAuthenticated));
     /*****************************************/
         
     // Register all routes with api prefix

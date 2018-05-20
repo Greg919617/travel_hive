@@ -9,7 +9,7 @@ import { WrappedRegistrationForm } from "./components/Pages/Join";
 import { WrappedLoginForm } from "./components/Pages/Login";
 import { ProfilePage } from "./components/Pages/Profile/Profile";
 import { InspirationPage } from "./components/Pages/Inspiration";
-import Plan from "./components/Pages/Plan/Plan";
+import { PlanHome } from "./components/Pages/Plan/index";
 import { Experience } from "./components/Pages/Experience/Experience";
 import Connect from "./components/Pages/Connect/Connect";
 import { Explore } from "./components/Pages/Explore/Explore";
@@ -56,7 +56,7 @@ export const App = connect(({ user, inspiration }) => ({
             render={() => <ProfilePage appState={props} />}
           />
           <Route path="/inspiration" component={InspirationPage} />
-          <PrivateRoute appState={props} path="/plan" component={Plan} />
+          <PrivateRoute appState={props} path="/plan" component={PlanHome} />
           <PrivateRoute appState={props} path="/experience" component={Experience} />
           <Route path="/connect" component={Connect} />
           <Route path="/explore" component={Explore} />

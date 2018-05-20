@@ -64,9 +64,7 @@ function getBase64(file) {
 }
 
 export async function addProfilePhoto(info) {
-  const base64Url = await getBase64(info.file);
-
-  console.log('Add Profile Photo Info',info);
+  const base64Url = await getBase64(info.file);  
   return fetch(`${api}/profile`, {
     ...baseOptions,
     method: 'POST',
@@ -148,11 +146,17 @@ export function getBase64ImgFromUrl(url) {
   return result;
 }
 
-export function addInspiration(inspiration) {
+export function addInspiration(inspiration) {  
   return fetch(`${api}/inspiration`, {
     ...baseOptions,
     method: 'POST',
-    body: JSON.stringify({ image: inspiration.image, description: inspiration.description }),
+    body: JSON.stringify({ 
+      image: inspiration.image, 
+      description: inspiration.description,
+      title: inspiration.title,
+      attribution: inspiration.attribution,
+      location: inspiration.location,
+     }),
   })
     .then(response => {
       if (response.ok) {
@@ -172,12 +176,13 @@ const onLogOut = () => {
   saveState(undefined);  
 };
 
-export function getInspirations(){
-  return fetch(`${api}/inspiration`, {
+export function getInspirations(id=null){
+  /* If no id is present request with no query parameters else add id query parameter */
+  let url = !id ? `${api}/inspiration` : `${api}/inspiration?inspirationId=` + id ;
+  return fetch(url, {
     ...baseOptions,   
   })
-    .then(response => {
-      console.log("Get inspiration response", response);
+    .then(response => {      
       if (response.ok) {
         return response.json();
       } else if (response.status === 401){
@@ -190,3 +195,4 @@ export function getInspirations(){
       console.log(error);
     });
 }
+
